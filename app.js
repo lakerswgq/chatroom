@@ -2,8 +2,9 @@ var http=require("http");
 var fs=require("fs");
 var express=require("express");
 var app=express();
+var port=process.env.PORT||3000;
 var server=http.createServer(app);
-server.listen(3000);
+server.listen(port);
 var io=require("socket.io").listen(server);
 var nicknames=[];
 app.get('/',function(req,res){
