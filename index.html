@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ChatRoom</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+	<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<style type="text/css">
+		#sendMessage{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<h1>Chat Room</h1>
+	<form id="setNickname" class="form-control">
+		<label>Nickname:<input type="text" name="nickname" id="nickname" class="xlarge"></label>
+		<input type="submit" value="Send Nickname" class="btn primary">
+	</form>
+	<form id="sendMessage" class="form-control">
+		<label>Message:<input type="text" name="message" id="message" class="xlarge"></label>
+		<input type="submit" value="Send Message" class="btn primary">
+	</form>
+	<section id="nicknames">
+		<ul></ul>
+	</section>
+	<section id="messages"></section>
+</body>
+<script type="text/javascript">
+	var socket=io.connect();
+	jQuery(function($){
+		var nickname=$("#nickname");
+		var setNicknameForm=$("#setNickname");
+		var nicknamesList=$("#nicknames ul");
+		var messageForm=$("#sendMessage");
+		var message=$("#message");
+		var messages=$("#messages");
+		setNicknameForm.submit(function(event) {
+			/* Act on the event */
+			event.preventDefault();
+			socket.emit("nickname",nickname.val(),function(ifTaken){
+				if(ifTaken){
+					setNicknameForm.prepend('<p>Sorry,the nickname has been taken</p>');
+				}
+				else{
+					console.log("Nickname set successfully")
+					setNicknameForm.hide();
+					messageForm.show();
+				}
+			});
+			
+		});
+		messageForm.submit(function(event) {
+			/* Act on the event */
+			event.preventDefault();
+			socket.emit("message",message.val());
+			message.val("").focus();
+		});
+		socket.on("nicknames",function(data){
+			//var html="<p><strong>online:</strong></p>";
+			var html="";
+			for(var i=0;i<data.length;i++){
+				html=html+"<li>"+data[i]+"</li>";
+			}
+			if(data.length!=0)
+				nicknamesList.empty().append(html);
+		});
+		socket.on("message",function(data){
+			messages.append("<p><strong>"+data.nick+":"+"</strong>"+data.message+"</p>");
+		});	
+	});
+</script>
+</html>
