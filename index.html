@@ -12,7 +12,8 @@
 	</style>
 </head>
 <body>
-	<h1>Chat Room</h1>
+	<h1>Chat Room<small>I will add something to make it not so bad sometimes</small></h1>
+	<p id="warning" class="text-warning"></p>
 	<form id="setNickname" class="form-control">
 		<label>Nickname:<input type="text" name="nickname" id="nickname" class="xlarge"></label>
 		<input type="submit" value="Send Nickname" class="btn primary">
@@ -21,6 +22,7 @@
 		<label>Message:<input type="text" name="message" id="message" class="xlarge"></label>
 		<input type="submit" value="Send Message" class="btn primary">
 	</form>
+	<p id="info" class="text-info"></p>
 	<section id="nicknames">
 		<ul></ul>
 	</section>
@@ -30,19 +32,26 @@
 	var socket=io.connect();
 	jQuery(function($){
 		var nickname=$("#nickname");
+		var warning=$("#warning");
 		var setNicknameForm=$("#setNickname");
 		var nicknamesList=$("#nicknames ul");
 		var messageForm=$("#sendMessage");
 		var message=$("#message");
 		var messages=$("#messages");
+		var info=$("#info");
 		setNicknameForm.submit(function(event) {
 			/* Act on the event */
 			event.preventDefault();
+			if(!nickname.val()&&!nickname.val().length){
+				warning.text("You must choose a correct nickname,baby :)");
+				return;
+			}
 			socket.emit("nickname",nickname.val(),function(ifTaken){
 				if(ifTaken){
-					setNicknameForm.prepend('<p>Sorry,the nickname has been taken</p>');
+					warning.text('Sorry,the nickname:"'+nickname.val()+'" has been taken');
 				}
 				else{
+					warning.text("");
 					console.log("Nickname set successfully")
 					setNicknameForm.hide();
 					messageForm.show();
@@ -53,6 +62,10 @@
 		messageForm.submit(function(event) {
 			/* Act on the event */
 			event.preventDefault();
+			if(!message.val()&&!message.val().length){
+				warning.text("Your words should mean something,right? :-P");
+				return;
+			}
 			socket.emit("message",message.val());
 			message.val("").focus();
 		});
@@ -68,6 +81,18 @@
 		socket.on("message",function(data){
 			messages.append("<p><strong>"+data.nick+":"+"</strong>"+data.message+"</p>");
 		});	
+		socket.on("nicknamesOn",function(data){
+			info.text("Your friend '"+data+"' has joined the talk");
+			setTimeout(function(){
+				info.text('');
+			},3000);
+		});
+		socket.on("nicknamesOff",function(data){
+			info.text("Your finend '"+data+"' has left the talk");
+			setTimeout(function(){
+				info.text('');
+			}, 3000);
+		});
 	});
 </script>
 </html>

@@ -27,6 +27,7 @@ io.sockets.on("connection",function(socket){
 				console.log(nicknames[i]+" ");
 			socket.nickname=data;
 			io.sockets.emit("nicknames",nicknames);
+			io.sockets.emit("nicknamesOn",socket.nickname);
 			console.log("Your friend "+data+" has joined the talk");
 		}
 	});
@@ -46,5 +47,6 @@ io.sockets.on("connection",function(socket){
 		console.log("Your friend "+socket.nickname+" has left the talk");
 		console.log("Nicknames are "+nicknames);
 		io.sockets.emit("nicknames",nicknames);
+		io.sockets.emit("nicknamesOff",socket.nickname);
 	});
 });
