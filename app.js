@@ -41,7 +41,7 @@ io.sockets.on("connection",function(socket){
 		console.log(socket.nickname+": "+data);
 		fileWriteStream.write("<p>");
 		fileWriteStream.write(socket.nickname+":");
-		fileWriteStream.write(data+" ");
+		fileWriteStream.write(data+" --");
 		fileWriteStream.write(new Date().toString());
 		fileWriteStream.write("</p>\r\n");
 		io.sockets.emit("message",{
