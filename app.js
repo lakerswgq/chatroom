@@ -21,6 +21,29 @@ app.get("/logs",function(req,res){
 		res.send(data);
 	});
 });
+app.get('/login',function(req,res){
+	fs.readFile("login.html",function(err,data){
+		res.writeHead(200,{
+			"Content-Type":"text/html"
+		});
+		res.end(data,"utf-8");
+	});
+});
+app.post('/login',function(req,res){
+	// if(req.body){
+	// 	res.redirect('/');
+	// 	res.send(req.body);
+	// }
+	if(req.body.username=="Julien"&&req.body.password=="lakers24"){
+		res.redirect("/delete");
+	}
+	else if(req.body.name!="Julien"){
+		io.sockets.emit("loginError",{message:"The username is wrong"});
+	}
+	else{
+		io.sockets.emit("loginError",{message:"The password is wrong"});
+	}
+});
 io.sockets.on("connection",function(socket){
 	socket.on("nickname",function(data,callback){
 		if(nicknames.indexOf(data)!==-1){
