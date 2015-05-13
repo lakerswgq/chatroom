@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+	<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<style type="text/css">
+		h1{
+			text-align: center;
+		}
+		#delete{
+			margin-top: 5%;
+			padding:0 auto;
+		}
+		#a{
+			margin-top: 20%;
+		}
+	</style>
+</head>
+<body>
+	<h1>Delete Page<small>you can delete logs here</small></h1>
+	<p class="text-success" id="success"></p>
+	<div class="col-sm-offset-4 col-sm-8" id="delete">
+		<button class="btn btn-danger">Delete</button>
+		<label class="text-warning">Be careful,you will delete all the logs</label>
+	</div>
+	<div id="a" class="col-sm-offset-5 col-sm-8">
+		<a href="/" title="back" class="btn btn-info">back to host</a>
+	</div>
+</body>
+<script type="text/javascript">
+	var socket=io.connect();
+	var success=$("#success");
+	$("button").click(function(event) {
+		/* Act on the event */
+		socket.emit("delete",{message:"delete"});
+	});
+	socket.on("deleteSuccess",function(data){
+		success.text(data.message);
+		setTimeout(function(){
+			success.text("");
+		},3000);
+	});
+</script>
+</html>

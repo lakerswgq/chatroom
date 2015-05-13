@@ -14,13 +14,23 @@
 <body>
 	<h1>Chat Room<small>I will add something to make it not so bad sometimes</small></h1>
 	<p id="warning" class="text-warning"></p>
-	<form id="setNickname" class="">
-		<label>Nickname:<input type="text" name="nickname" id="nickname" class="xlarge" placeholder="nickname here"></label>
-		<input type="submit" value="Send Nickname" class="btn primary">
+	<form id="setNickname" class="form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-sm-1">Nickname:</label>
+			<div class="col-sm-3">
+				<input type="text" name="nickname" id="nickname" class="form-control" placeholder="nickname here">	
+			</div>
+			<input type="submit" value="Send Nickname" class="btn primary">
+		</div>
 	</form>
-	<form id="sendMessage" class="">
-		<label>Message:<input type="text" name="message" id="message" class="xxlarge" placeholder="message here"></label>
+	<form id="sendMessage" class="form-horizontal">
+		<div class="form-group">
+		<label class="control-label col-sm-1">Message:</label>
+		<div class="col-sm-3">
+			<input type="text" name="message" id="message" class="form-control" placeholder="message here">
+		</div>
 		<input type="submit" value="Send Message" class="btn primary">
+		</div>
 	</form>
 	<p id="info" class="text-info"></p>
 	<a href="/logs" title="logs" class="btn primary">logs</a>
