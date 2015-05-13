@@ -15,14 +15,15 @@
 	<h1>Chat Room<small>I will add something to make it not so bad sometimes</small></h1>
 	<p id="warning" class="text-warning"></p>
 	<form id="setNickname" class="form-control">
-		<label>Nickname:<input type="text" name="nickname" id="nickname" class="xlarge"></label>
+		<label>Nickname:<input type="text" name="nickname" id="nickname" class="xlarge" placeholder="nickname here"></label>
 		<input type="submit" value="Send Nickname" class="btn primary">
 	</form>
 	<form id="sendMessage" class="form-control">
-		<label>Message:<input type="text" name="message" id="message" class="xlarge"></label>
+		<label>Message:<input type="text" name="message" id="message" class="xxlarge" placeholder="message here"></label>
 		<input type="submit" value="Send Message" class="btn primary">
 	</form>
 	<p id="info" class="text-info"></p>
+	<a href="/logs" title="logs" class="btn primary">logs</a>
 	<section id="nicknames">
 		<ul></ul>
 	</section>
@@ -79,7 +80,7 @@
 				nicknamesList.empty().append(html);
 		});
 		socket.on("message",function(data){
-			messages.append("<p><strong>"+data.nick+":"+"</strong>"+data.message+"</p>");
+			messages.prepend("<p><strong>"+data.nick+":"+"</strong>"+data.message+"</p>");
 		});	
 		socket.on("nicknamesOn",function(data){
 			info.text("Your friend '"+data+"' has joined the talk");

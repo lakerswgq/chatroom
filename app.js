@@ -7,12 +7,18 @@ var server=http.createServer(app);
 server.listen(port);
 var io=require("socket.io").listen(server);
 var nicknames=[];
+var fileWriteStream=fs.createWriteStream('1.txt');
 app.get('/',function(req,res){
 	fs.readFile("index.html",function(err,data){
 		res.writeHead(200,{
 			"Content-Type":"text/html"
 		});
 		res.end(data,"utf-8");
+	});
+});
+app.get("/logs",function(req,res){
+	fs.readFile("1.txt", "utf-8", function(err,data){
+		res.send(data);
 	});
 });
 io.sockets.on("connection",function(socket){
@@ -32,7 +38,12 @@ io.sockets.on("connection",function(socket){
 		}
 	});
 	socket.on("message",function(data){
-		console.log("")
+		console.log(socket.nickname+": "+data);
+		fileWriteStream.write("<p>");
+		fileWriteStream.write(socket.nickname+":");
+		fileWriteStream.write(data+" ");
+		fileWriteStream.write(new Date().toString());
+		fileWriteStream.write("</p>\r\n");
 		io.sockets.emit("message",{
 			nick:socket.nickname,
 			message:data
