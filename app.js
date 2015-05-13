@@ -93,7 +93,7 @@ io.sockets.on("connection",function(socket){
 	});
 	socket.on("delete",function(data){
 		console.log(data.message);
-		fs.writeFile("1.txt","The logs have been deleted");
+		fs.writeFile("1.txt","");
 		io.sockets.emit("deleteSuccess",{message:"The logs has been deleted successfully"});
 	});
 });
