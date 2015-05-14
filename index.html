@@ -79,6 +79,7 @@
 				return;
 			}
 			socket.emit("message",message.val());
+			warning.text("");
 			message.val("").focus();
 		});
 		socket.on("nicknames",function(data){
