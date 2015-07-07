@@ -1,9 +1,11 @@
 var http=require("http");
 var fs=require("fs");
+var cookieParser=require("cookie-parser");
 //so that we can use req.body
 var bodyParser=require("body-parser");
 var express=require("express");
 var app=express();
+//to place the app on heroku
 var port=process.env.PORT||3000;
 var server=http.createServer(app);
 server.listen(port);
@@ -11,14 +13,16 @@ var io=require("socket.io").listen(server);
 var nicknames=[];
 //so that we can use req.body
 app.use(bodyParser());
+app.use(cookieParser());
 var fileWriteStream=fs.createWriteStream('1.txt');
 app.get('/',function(req,res){
 	fs.readFile("index.html",function(err,data){
-		res.writeHead(200,{
-			"Content-Type":"text/html"
-		});
+	res.writeHead(200,{
+		"Content-Type":"text/html"
+	});
 		res.end(data,"utf-8");
 	});
+
 });
 app.get("/logs",function(req,res){
 	fs.readFile("1.txt", "utf-8", function(err,data){
