@@ -4,6 +4,7 @@ var cookieParser=require("cookie-parser");
 //so that we can use req.body
 var bodyParser=require("body-parser");
 var express=require("express");
+var session=require("express-session");
 var app=express();
 //to place the app on heroku
 var port=process.env.PORT||3000;
