@@ -19,10 +19,15 @@
 </head>
 <body>
 	<h1>Chat Room<small>simple & ugly</small></h1>
+	<div class="container-fluid" style="float:right;">
+		<a href="/logs" title="logs" class=" btn ">logs</a>
+		<a href="/login" title="delete" class=" btn ">delete logs</a>
+		<div class="clearfix"></div>
+	</div>
 	<p id="warning" class="text-warning" style="margin-top:50px;"></p>
 	<form id="setNickname" class="form-horizontal">
 		<div class="form-group">
-			<label class="col-sm-offset-1 control-label col-sm-1">Nickname:</label>
+			<label class="col-sm-offset-2 control-label col-sm-1">Nickname:</label>
 			<div class="col-sm-3">
 				<input type="text" name="nickname" id="nickname" class="form-control" placeholder="nickname here">	
 			</div>
@@ -31,17 +36,15 @@
 	</form>
 	<form id="sendMessage" class="form-horizontal">
 		<div class="form-group">
-		<label class="col-sm-offset-1 control-label col-sm-1">Message:</label>
+		<label class="col-sm-offset-2 control-label col-sm-1">Message:</label>
 		<div class="col-sm-3">
 			<input type="text" name="message" id="message" class="form-control" placeholder="message here">
 		</div>
 		<input type="submit" value="Send Message" class="btn btn-primary">
 		</div>
 	</form>
-	<p id="info" class="col-sm-offset-1 text-info"></p>
-	<a href="/logs" title="logs" class="col-sm-offset-2 btn btn-danger">logs</a>
-	<a href="/login" title="delete" class="col-sm-offset-1 btn btn-danger">delete logs</a>
-	<section id="nicknames" classs="col-sm-offset-1">
+	<p id="info" class="col-sm-offset-2 text-info"></p>
+	<section id="nicknames" classs="col-sm-offset-2">
 		<ul></ul>
 	</section>
 	<section id="messages"></section>
