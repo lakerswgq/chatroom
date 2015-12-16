@@ -20,8 +20,8 @@
 	</style>
 </head>
 <body>
-	<h1>Delete Page<small>you can delete logs here</small></h1>
-	<p class="text-success" id="success"></p>
+	<h1 class="text-danger">Delete Page<small>you can delete logs here</small></h1>
+	<p class="text-success col-sm-offset-4" id="success"></p>
 	<div class="col-sm-offset-4 col-sm-8" id="delete">
 		<button class="btn btn-danger">Delete</button>
 		<label class="text-warning">Be careful,you will delete all the logs</label>
@@ -32,13 +32,13 @@
 </body>
 <script type="text/javascript">
 	var socket=io.connect();
-	var success=$("#success");
+	var $success=$("#success");
 	$("button").click(function(event) {
 		/* Act on the event */
 		socket.emit("delete",{message:"delete"});
 	});
 	socket.on("deleteSuccess",function(data){
-		success.text(data.message);
+		$success.text(data.message);
 		setTimeout(function(){
 			success.text("");
 		},3000);

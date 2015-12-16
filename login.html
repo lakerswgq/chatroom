@@ -13,8 +13,7 @@
   </style>
 </head>
 <body>
-<h1 class="text-info">You need to log in before you delete the logs</h1>
-<p class="text-warning" id="warning"></p>
+<h1 class="text-danger">Log in before you delete the logs</h1>
 <form class="form-horizontal" method="post" action="/login">
   <div class="form-group">
     <label class="col-sm-2 control-label">Name:</label>
@@ -28,6 +27,7 @@
       <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
     </div>
   </div>
+      <h4 class="text-warning col-sm-offset-2" id="warning"></h4>
 	<div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-default">Sign in</button>
   </div>
@@ -35,9 +35,9 @@
 </body>
 <script type="text/javascript">
 	var socket=io.connect();
-	var warning=$("#warning");
+	var $warning=$("#warning");
 	socket.on("loginError",function(data){
-		warning.text(data.message);
+		$warning.text(data.message);
 	});
 </script>
 </html>

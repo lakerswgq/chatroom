@@ -9,18 +9,24 @@
 		#sendMessage{
 			display: none;
 		}
+		body{
+			margin:5px 10px;
+		}
+		h1{
+			text-align:center;
+		}
 	</style>
 </head>
 <body>
-	<h1>Chat Room<small>I will add something to make it not so bad sometimes</small></h1>
-	<p id="warning" class="text-warning"></p>
+	<h1>Chat Room<small>simple & ugly</small></h1>
+	<p id="warning" class="text-warning" style="margin-top:50px;"></p>
 	<form id="setNickname" class="form-horizontal">
 		<div class="form-group">
 			<label class="control-label col-sm-1">Nickname:</label>
 			<div class="col-sm-3">
 				<input type="text" name="nickname" id="nickname" class="form-control" placeholder="nickname here">	
 			</div>
-			<input type="submit" value="Send Nickname" class="btn primary">
+			<input type="submit" value="Send Nickname" class="btn btn-primary">
 		</div>
 	</form>
 	<form id="sendMessage" class="form-horizontal">
@@ -29,7 +35,7 @@
 		<div class="col-sm-3">
 			<input type="text" name="message" id="message" class="form-control" placeholder="message here">
 		</div>
-		<input type="submit" value="Send Message" class="btn primary">
+		<input type="submit" value="Send Message" class="btn btn-primary">
 		</div>
 	</form>
 	<p id="info" class="text-info"></p>
