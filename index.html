@@ -24,7 +24,7 @@
 		<a href="/login" title="delete" class=" btn ">delete logs</a>
 		<div class="clearfix"></div>
 	</div>
-	<p id="warning" class="text-warning col-lg-offset-2" style="margin-top:50px;padding-left:25px;">rhrth</p>
+	<p id="warning" class="text-warning col-lg-offset-2" style="margin-top:50px;padding-left:25px;"></p>
 	<form id="setNickname" class="form-horizontal">
 		<div class="form-group">
 			<label class="col-lg-offset-2 control-label col-lg-1">Nickname:</label>
@@ -103,7 +103,7 @@
 				nicknamesList.empty().append(html);
 		});
 		socket.on("message",function(data){
-			messages.prepend("<p><strong style='margin-right:20px;'>"+data.nick+":"+"</strong>"+data.message+"</p>");
+			messages.prepend("<p><strong class='text-' style='margin-right:20px;'>"+data.nick+":"+"</strong>"+data.message+"<small style='text-muted'>"+data.date+"</small></p>");
 		});	
 		socket.on("nicknamesOn",function(data){
 			info.text("Your friend '"+data+"' has joined the talk");

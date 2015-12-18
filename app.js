@@ -82,7 +82,8 @@ io.sockets.on("connection",function(socket){
 		fileWriteStream.write("</p>\r\n");
 		io.sockets.emit("message",{
 			nick:socket.nickname,
-			message:data
+			message:data,
+			date:new Date()
 		});
 	});
 	socket.on("disconnect",function(){
