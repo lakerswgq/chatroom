@@ -103,7 +103,7 @@
 				nicknamesList.empty().append(html);
 		});
 		socket.on("message",function(data){
-			messages.prepend("<p><strong class='text-' style='margin-right:20px;'>"+data.nick+":"+"</strong>"+data.message+"<small style='text-muted'>"+data.date+"</small></p>");
+			messages.prepend("<p><strong class='text-' style='margin-right:20px;'>"+data.nick+":"+"</strong>"+data.message+"<small class='text-muted' style='margin-left:50px;'>"+data.date+"</small></p>");
 		});	
 		socket.on("nicknamesOn",function(data){
 			info.text("Your friend '"+data+"' has joined the talk");
