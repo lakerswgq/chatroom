@@ -64,13 +64,14 @@ io.sockets.on("connection",function(socket){
 		}
 		else{
 			callback(false);
-			nicknames.push(data);
+			socket.nickname=data.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+			nicknames.push(socket.nickname);
 			for(var i=0;i<nicknames.length;i++)
 				console.log(nicknames[i]+" ");
-			socket.nickname=data;
+			// socket.nickname=data;
 			io.sockets.emit("nicknames",nicknames);
 			io.sockets.emit("nicknamesOn",socket.nickname);
-			console.log("Your friend "+data+" has joined the talk");
+			console.log("Your friend "+socket.nickname+" has joined the talk");
 		}
 	});
 	socket.on("message",function(data){
