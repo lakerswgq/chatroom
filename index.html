@@ -24,7 +24,7 @@
 		<a href="/login" title="delete" class=" btn ">delete logs</a>
 		<div class="clearfix"></div>
 	</div>
-	<p id="warning" class="text-warning" style="margin-top:50px;"></p>
+	<p id="warning" class="text-warning col-lg-offset-2" style="margin-top:50px;padding-left:25px;">rhrth</p>
 	<form id="setNickname" class="form-horizontal">
 		<div class="form-group">
 			<label class="col-lg-offset-2 control-label col-lg-1">Nickname:</label>
@@ -66,7 +66,7 @@
 			/* Act on the event */
 			event.preventDefault();
 			if(!nickname.val()&&!nickname.val().length){
-				warning.text("You must choose a correct nickname,baby :)");
+				warning.text("You must choose a correct nickname");
 				return;
 			}
 			socket.emit("nickname",nickname.val(),function(ifTaken){
