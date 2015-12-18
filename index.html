@@ -46,11 +46,9 @@
 	<p id="info" class="col-lg-offset-3 text-info"></p>
 	<section id="nicknames" class="col-lg-offset-3">
 		<ul>
-			<li>Julien</li>
 		</ul>
 	</section>
 	<section id="messages" class="col-lg-offset-2" style="padding-left:30px;">
-		rhrhtrth
 	</section>
 </body>
 <script type="text/javascript">
@@ -105,7 +103,7 @@
 				nicknamesList.empty().append(html);
 		});
 		socket.on("message",function(data){
-			messages.prepend("<p><strong>"+data.nick+":"+"</strong>"+data.message+"</p>");
+			messages.prepend("<p><strong style='margin-right:20px;'>"+data.nick+":"+"</strong>"+data.message+"</p>");
 		});	
 		socket.on("nicknamesOn",function(data){
 			info.text("Your friend '"+data+"' has joined the talk");
