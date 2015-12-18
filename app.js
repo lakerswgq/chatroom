@@ -75,6 +75,7 @@ io.sockets.on("connection",function(socket){
 		}
 	});
 	socket.on("message",function(data){
+		data=data.replace(/</g,"&lt;").replace(/>/g,"&gt;");
 		console.log(socket.nickname+": "+data);
 		fileWriteStream.write("<p>");
 		fileWriteStream.write(socket.nickname+":");

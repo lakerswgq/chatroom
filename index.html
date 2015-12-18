@@ -86,7 +86,7 @@
 			/* Act on the event */
 			event.preventDefault();
 			if(!message.val()&&!message.val().length){
-				warning.text("Your words should mean something,right? :-P");
+				warning.text("Your words should mean something");
 				return;
 			}
 			socket.emit("message",message.val());
