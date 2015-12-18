@@ -27,8 +27,8 @@
 	<p id="warning" class="text-warning" style="margin-top:50px;"></p>
 	<form id="setNickname" class="form-horizontal">
 		<div class="form-group">
-			<label class="col-sm-offset-2 control-label col-sm-1">Nickname:</label>
-			<div class="col-sm-3">
+			<label class="col-lg-offset-2 control-label col-lg-1">Nickname:</label>
+			<div class="col-lg-3">
 				<input type="text" name="nickname" id="nickname" class="form-control" placeholder="nickname here">	
 			</div>
 			<input type="submit" value="Send Nickname" class="btn btn-primary">
@@ -36,18 +36,22 @@
 	</form>
 	<form id="sendMessage" class="form-horizontal">
 		<div class="form-group">
-		<label class="col-sm-offset-2 control-label col-sm-1">Message:</label>
-		<div class="col-sm-3">
+		<label class="col-lg-offset-2 control-label col-lg-1">Message:</label>
+		<div class="col-lg-3">
 			<input type="text" name="message" id="message" class="form-control" placeholder="message here">
 		</div>
 		<input type="submit" value="Send Message" class="btn btn-primary">
 		</div>
 	</form>
-	<p id="info" class="col-sm-offset-2 text-info"></p>
-	<section id="nicknames" classs="col-sm-offset-2">
-		<ul></ul>
+	<p id="info" class="col-lg-offset-3 text-info"></p>
+	<section id="nicknames" class="col-lg-offset-3">
+		<ul>
+			<li>Julien</li>
+		</ul>
 	</section>
-	<section id="messages"></section>
+	<section id="messages" class="col-lg-offset-2" style="padding-left:30px;">
+		rhrhtrth
+	</section>
 </body>
 <script type="text/javascript">
 	var socket=io.connect();
