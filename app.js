@@ -46,6 +46,10 @@ app.get('/delete',function(req,res){
 		res.end(data,"utf-8");
 	});
 });
+
+app.get("/julien",function (req,res){
+	res.end("Julien","utf-8");
+});
 app.post('/login',function(req,res){
 	if(req.body.username=="Julien"&&req.body.password=="lakers24"){
 		res.redirect("/delete");
